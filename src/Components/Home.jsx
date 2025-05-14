@@ -1,6 +1,7 @@
-import React, { useRef } from 'react';
 
+import React, { useRef } from 'react';
 import emailjs from '@emailjs/browser';
+
 import { FaPhoneVolume } from "react-icons/fa6";
 import { MdOutlineAttachEmail } from "react-icons/md";
 import { FaLinkedin } from "react-icons/fa";
@@ -20,20 +21,24 @@ import ReactImg from "../../public/images/React.png";
 
 
 const Home = () => {
+
   const form = useRef();
+
   const sendEmail = (e) => {
     e.preventDefault();
-    emailjs.sendForm(
-      'service_w21i0ou',
-      'template_zdd8qyj',
-      form.current,
-      '7lmvJ7DjysSiDLI1H'
-    ).then((result) => {
-      alert('Message sent successfully!');
-      form.current.reset();
-    }, (error) => {
-      alert('Failed to send the message. Please try again later.', error.text);
-    });
+
+    emailjs
+      .sendForm('service_eux81gd', 'template_zdd8qyj', form.current, {
+        publicKey: 'PDgVY8zQXzI4jXAcs',
+      })
+      .then(
+        () => {
+          console.log('SUCCESS!');
+        },
+        (error) => {
+          console.log('FAILED...', error.text);
+        },
+      );
   };
 
   return (
@@ -128,7 +133,7 @@ const Home = () => {
 
             <label className="block mb-3">
               <span className="text-[dodgerblue] font-medium">Email</span>
-              <input type="email" name="user_email" required className="mt-1 block w-full rounded-md border border-[dodgerblue] p-2 " />
+              <input type="email" name="user_email"  required className="mt-1 block w-full rounded-md border border-[dodgerblue] p-2 " />
             </label>
 
             <label className="block mb-4">
